@@ -13,3 +13,25 @@ To use the dhcp IPAM plugin, first launch the dhcp daemon:
 $ rm -f /run/cni/dhcp.sock
 $ ./dhcp daemon
 ```
+
+## Example of CRD configuration
+
+```
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: "sriov111"
+  namespace: default
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: intel.com/sriov_111
+spec:
+  config:
+      '{
+       "type": "sriov",
+       "name": "sriov111",
+       "vlan": 111,
+       "ipam": {
+          "type": "dhcp"
+          }
+      }'
+
