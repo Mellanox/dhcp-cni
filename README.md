@@ -25,13 +25,13 @@ metadata:
   annotations:
     k8s.v1.cni.cncf.io/resourceName: intel.com/sriov_111
 spec:
-  config:
-      '{
+  config: |-
+      {
        "type": "sriov",
        "name": "sriov111",
        "vlan": 111,
        "ipam": {
           "type": "dhcp"
           }
-      }'
+      }
 
