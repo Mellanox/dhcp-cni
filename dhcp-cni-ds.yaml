@@ -8,6 +8,8 @@ metadata:
     tier: node
     app: dhcp-cni
 spec:
+  updateStrategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -15,15 +17,14 @@ spec:
         app: dhcp-cni
     spec:
       hostNetwork: true
-      nodeSelector:
-        beta.kubernetes.io/arch: amd64
+      hostPID: true
       tolerations:
       - key: node-role.kubernetes.io/master
         operator: Exists
         effect: NoSchedule
       containers:
       - name: kube-dhcp-cni
-        image: mellanox/dhcp-cni:latest
+        image: mellanox/dhcp-cni
         securityContext:
           privileged: true
         command:
@@ -45,3 +46,4 @@ spec:
         - name: run
           hostPath:
             path: /run
+            
