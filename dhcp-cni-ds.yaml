@@ -31,7 +31,7 @@ spec:
         - /bin/sh
         args:
         - -c
-        - 'rm -f /run/cni/dhcp.sock; exec /dhcp daemon'
+        - 'rm -f /run/cni/dhcp.sock; cp -f /dhcp /host/optcnibin/; exec /dhcp daemon'
         resources:
           requests:
             cpu: "100m"
@@ -42,8 +42,12 @@ spec:
         volumeMounts:
         - name: run
           mountPath: /run
+        - name: optcnibin
+          mountpath: /host/optcnibin
       volumes:
         - name: run
           hostPath:
             path: /run
-            
+        - name: optcnibin
+          hostPath:
+            path: /opt/cni/bin            
