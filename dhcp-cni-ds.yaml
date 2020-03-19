@@ -43,7 +43,7 @@ spec:
         - name: run
           mountPath: /run
         - name: optcnibin
-          mountpath: /host/optcnibin
+          mountPath: /host/optcnibin
       volumes:
         - name: run
           hostPath:
